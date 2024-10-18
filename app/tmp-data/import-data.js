@@ -5,7 +5,8 @@ const path = require("path");
 
 const importData = async () => {
   const movies = [];
-  const db = new sqlite3.Database(":memory:");
+  // const db = new sqlite3.Database(":memory:");
+  const db = new sqlite3.Database(path.join(__dirname, 'database.db'));
 
   return new Promise((resolve, reject) => {
     const csvFilePath = path.join(__dirname, 'movielist.csv');
@@ -33,6 +34,22 @@ const importData = async () => {
               }
             );
           });
+
+          const rowCount = await new Promise((resolve, reject) => {
+            db.get(`SELECT COUNT(*) as count FROM movies`, [], (err, row) => {
+              if (err) {
+                console.error("Erro ao contar registros:", err);
+                reject(err);
+              } else {
+                resolve(row.count);
+              }
+            });
+          });
+
+          if (rowCount > 0) {
+            resolve()
+            return
+          }
 
           for (const movie of movies) {
             await new Promise((resolve, reject) => {

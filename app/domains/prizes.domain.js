@@ -1,5 +1,6 @@
 const SqliteService = require("../services/sqlite.svc");
 const prizeDt = require('../data-transformations/prize.dt')
+const intervalYears = require('../utils/get-years-interval.util')
 
 const getTwoPrizesConsecutives = async () => {
   const query = `SELECT
@@ -13,8 +14,12 @@ const getTwoPrizesConsecutives = async () => {
   const prizes = await sqliteService.execQuery(query);
 
   const prizesDt = prizeDt(prizes)
+  const producer = prizesDt.map(el => ({
+    producer: el.producers,
+    interval: intervalYears(el.years)
+  }))
 
-  return prizesDt
+  return producer
 };
 
 module.exports = {

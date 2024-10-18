@@ -1,0 +1,23 @@
+version: '3.8'
+services:
+  h2-database:
+    image: oscarfonts/h2
+    container_name: h2-database
+    ports:
+      - "8082:8082"
+      - "9092:9092"
+    environment:
+      - H2_OPTIONS=-tcp -tcpAllowOthers -web -webAllowOthers
+
+  node-app:
+    build:
+      context: ./app
+    container_name: app
+    depends_on:
+      - h2-database
+    environment:
+      - NODE_ENV=development
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./app:/usr/src/app

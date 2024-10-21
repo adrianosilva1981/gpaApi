@@ -3,6 +3,6 @@ const router = express.Router();
 const controller = require('../controllers/prizes.controller')
 
 router.get('/', controller.works)
-router.get('/two-prize-consecutives', controller.getTwoPrizesConsecutives)
+router.get('/mim-max-prizes', controller.getTwoPrizesConsecutives)
 
 module.exports = router;

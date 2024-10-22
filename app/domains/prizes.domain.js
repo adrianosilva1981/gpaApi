@@ -1,6 +1,5 @@
 const SqliteService = require("../services/sqlite.svc");
 const prizeDT = require('../data-transformations/prizes.dt')
-const intervalYears = require('../utils/get-years-interval.util')
 
 const getTwoPrizesConsecutives = async () => {
   const query = `SELECT * FROM movies m WHERE m.winner = 'yes'`;

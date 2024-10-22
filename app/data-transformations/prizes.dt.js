@@ -20,7 +20,7 @@ module.exports = (prizes) => {
     (key) => producersCount[key].length > 1
   );
 
-  if (!winners.length) return {}
+  if (!winners.length) return null
 
   // agrupando os produtores
   const winnersDt = {};

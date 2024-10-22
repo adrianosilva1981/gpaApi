@@ -4,7 +4,8 @@
   "description": "Golden Raspberry Awards",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon ./bin/server.js"
+    "start": "nodemon ./bin/server.js",
+    "test": "jest"
   },
   "dependencies": {
     "csv-parser": "^3.0.0",
@@ -16,5 +17,10 @@
     "jdbc": "^0.7.6",
     "nodemon": "^3.1.7",
     "sqlite3": "^5.1.7"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "mocha": "^10.7.3",
+    "supertest": "^7.0.0"
   }
 }

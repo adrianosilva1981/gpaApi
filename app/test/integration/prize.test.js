@@ -1,18 +1,26 @@
-const request = require('supertest');
-const app = require('../../app');
+const request = require("supertest");
+const app = require("../../app");
 
-describe('GET /prizes/mim-max-prizes', () => {
-    it('Deve retornar o maior e o menor intervalo', async () => {
-        const res = await request(app)
-            .get('/prizes/mim-max-prizes')
-            .set('Accept', 'application/json');
+describe("GET /prizes/mim-max-prizes", () => {
+  it("Healthcheck", async () => {
+    const res = await request(app)
+      .get("/")
+      .set("Accept", "application/json");
 
-        expect(res.statusCode).toBe(200);
+    expect(res.statusCode).toBe(200);
+  });
 
-        expect(res.body).toHaveProperty('min');
-        expect(res.body.min).toBeInstanceOf(Array);
+  it("Deve retornar o maior e o menor intervalo", async () => {
+    const res = await request(app)
+      .get("/prizes/mim-max-prizes")
+      .set("Accept", "application/json");
 
-        expect(res.body).toHaveProperty('max');
-        expect(res.body.max).toBeInstanceOf(Array);
-    });
+    expect(res.statusCode).toBe(200);
+
+    expect(res.body).toHaveProperty("min");
+    expect(res.body.min).toBeInstanceOf(Array);
+
+    expect(res.body).toHaveProperty("max");
+    expect(res.body.max).toBeInstanceOf(Array);
+  });
 });

@@ -19,15 +19,20 @@ After that the API will listen on localhost:3000
 
 ## Usage
 
-To API healthcheck test, request to '/'
+To API healthcheck test, request to '/':
 
 ```bash
 curl --location --request GET 'http://localhost:3000/'
 ```
 
-To get the interval prizes, request to '/prizes/mim-max-prizes'
+To get the interval prizes, request to '/prizes/mim-max-prizes':
 
-## Tes
+```bash
+curl --location --request GET 'http://localhost:3000/prizes/mim-max-prizes'
+```
+
+
+## Tests
 
 ```bash
 npm test

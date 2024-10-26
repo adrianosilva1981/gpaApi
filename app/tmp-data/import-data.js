@@ -5,14 +5,15 @@ const path = require("path");
 
 const importData = async () => {
   // in case to use with file to view data with a sgbd
-  // if (fs.existsSync(path.join(__dirname, 'database.db'))) {
-  //   fs.writeFileSync(path.join(__dirname, 'database.db'))
-  // }
+  const filePath = path.join(__dirname, 'database.db');
+  if (!fs.existsSync(filePath)) {
+    fs.writeFileSync(filePath, '', 'utf-8')
+  }
 
   const movies = [];
-  const db = new sqlite3.Database(":memory:");
+  // const db = new sqlite3.Database(":memory:");
   // to set database to file
-  // const db = new sqlite3.Database(path.join(__dirname, 'database.db'));
+  const db = new sqlite3.Database(filePath);
 
   return new Promise((resolve, reject) => {
     const csvFilePath = path.join(__dirname, 'movielist.csv');

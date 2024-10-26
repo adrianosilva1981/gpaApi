@@ -41,28 +41,24 @@ module.exports = (prizes) => {
     sortedData[key] = winnersDt[key];
   });
 
-  // calculando o menor e maior intervalo
-  const min = Object.keys(sortedData)[0]
-  const max = Object.keys(sortedData)[Object.keys(sortedData).length - 1]
+  let minInterval = Object.keys(sortedData)[0]
+  let maxInterval = Object.keys(sortedData)[Object.keys(sortedData).length - 1]
 
-  return  {
-    min: [
-      {
-        producer: min,
-        interval: calculateInterval(sortedData[min])[0],
-        previousWin: sortedData[min][0],
-        followingWin: sortedData[min][sortedData[min].length - 1],
-      }
-    ],
-    max: [
-      {
-        producer: max,
-        interval: calculateInterval(sortedData[max])[0],
-        previousWin: sortedData[max][0],
-        followingWin: sortedData[max][sortedData[max].length - 1],
-      }
-    ]
-  }
+  minInterval = sortedData[minInterval][1] - sortedData[minInterval][0],
+  maxInterval = sortedData[maxInterval][1] - sortedData[maxInterval][0]
+
+  const allData = Object.keys(sortedData).map(el => ({
+    producer: el,
+    interval: calculateInterval(sortedData[el])[0],
+    previousWin: sortedData[el][0],
+    followingWin: sortedData[el][sortedData[el].length - 1],
+  }))
+
+
+  const min = allData.filter(el => el.interval === minInterval)
+  const max = allData.filter(el => el.interval === maxInterval)
+
+  return { min, max }
 };
 
 const calculateDifference = (years) => {

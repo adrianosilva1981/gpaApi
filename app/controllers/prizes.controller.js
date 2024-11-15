@@ -7,9 +7,10 @@ const works = (req, res, next) => {
 const getTwoPrizesConsecutives = async (req, res, next) => {
   try {
     const result = await prizeDomain.getTwoPrizesConsecutives()
+
     const statusCode = result ? 200 : 404
 
-    res.status(statusCode).send(result);
+    res.status(statusCode).json(result);
   } catch (error) {
     res.status(500).send({ message: error.message || error });
   }

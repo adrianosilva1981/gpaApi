@@ -10,3 +10,5 @@ const name = process.env.NAME || 'GAAPI'
 httpServer.listen(port, () => {
   console.log(`${name} LISTEN ON PORT ${port}`)
 })
+
+module.exports = httpServer

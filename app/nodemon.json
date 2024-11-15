@@ -1,0 +1,10 @@
+{
+    "watch": [
+        "app",
+        "*.csv"
+    ],
+    "ext": "js,csv",
+    "ignore": [
+        "node_modules"
+    ]
+}
